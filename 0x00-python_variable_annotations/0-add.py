@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """A Module that contains a type-annotated function
 Args:
     a: float
