@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""
-A Module that contains a type-annotated function
+"""A Module that contains a type-annotated function
 Args:
     a: float
     b: float
