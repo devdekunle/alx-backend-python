@@ -12,4 +12,13 @@
 from typing import List, Tuple, Union, Callable
 
 
-def make_multiplier(multiplier: float) -> 
+def make_multiplier(multiplier: float) -> Callable[[float], float]:
+    """
+    returns a function that multiplies a float by a multiplier
+    """
+    def multiply(value: float) -> float:
+        """
+        return answer
+        """
+        return value * multiplier
+    return multiply
