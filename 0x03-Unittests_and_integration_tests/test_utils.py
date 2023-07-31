@@ -2,8 +2,9 @@
 """
 Module that contains tests for util.access_nested_map
 """
-from utils import access_nested_map
+from utils import access_nested_map, get_json
 import unittest
+from unittest.mock import patch, MagicMock
 from parameterized import parameterized
 from typing import (
     Any,
@@ -23,7 +24,7 @@ class TestAccessNestedMap(unittest.TestCase):
         ({"a": {"b": 2}}, ("a", "b"), 2)
     ])
     def test_access_nested_map(self, nested_map: Mapping,
-        path: Sequence, expected: Any) -> None:
+                          path: Sequence, expected: Any) -> None:
         """ tests for access_nested_map"""
         self.assertEqual(access_nested_map(nested_map, path), expected)
 
@@ -37,4 +38,22 @@ class TestAccessNestedMap(unittest.TestCase):
         with self.assertRaises(KeyError, msg=expected):
             access_nested_map(nested_map, path)
 
+class TestGetJson(unittest.TestCase):
+    """
+    Test for get_json method
+    """
+    @parameterized.expand([
+        ("http://example.com", {"payload": True}),
+        ("http://holberton.io", {"payload": False})
+    ])
+    @patch('utils.requests')
+    def test_get_json(self, test_url, test_payload, mocked_requests):
+        """
+        mock test for the get_json method
+        """
+        mock_response = MagicMock()
+        mock_response.json.return_value = test_payload
 
+        mocked_requests.get.return_value = mock_response
+        self.assertEqual(get_json(test_url), test_payload)
+        mocked_requests.get.assert_called_once_with(test_url)
