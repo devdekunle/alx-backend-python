@@ -14,6 +14,7 @@ from typing import (
     Callable
 )
 
+
 class TestAccessNestedMap(unittest.TestCase):
     """
     tests class for the access_nested_map
@@ -24,7 +25,7 @@ class TestAccessNestedMap(unittest.TestCase):
         ({"a": {"b": 2}}, ("a", "b"), 2)
     ])
     def test_access_nested_map(self, nested_map: Mapping,
-                          path: Sequence, expected: Any) -> None:
+                               path: Sequence, expected: Any) -> None:
         """ tests for access_nested_map"""
         self.assertEqual(access_nested_map(nested_map, path), expected)
 
@@ -33,10 +34,14 @@ class TestAccessNestedMap(unittest.TestCase):
         ({"a": 1}, ("a", "b"), "KeyError: 'b'")
     ])
     def test_access_nested_map_exception(self,
-        nested_map: Mapping, path: Sequence,
-        expected: Any) -> None:
+                                         nested_map: Mapping, path: Sequence,
+                                         expected: Any) -> None:
+        """
+        test for access_nestes_map_exception
+        """
         with self.assertRaises(KeyError, msg=expected):
             access_nested_map(nested_map, path)
+
 
 class TestGetJson(unittest.TestCase):
     """
@@ -57,6 +62,7 @@ class TestGetJson(unittest.TestCase):
         mocked_requests.get.return_value = mock_response
         self.assertEqual(get_json(test_url), test_payload)
         mocked_requests.get.assert_called_once_with(test_url)
+
 
 class TestMemoize(unittest.TestCase):
     """
