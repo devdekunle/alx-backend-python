@@ -35,7 +35,7 @@ class TestGithubOrgClient(unittest.TestCase):
         ("google", {"testing_google": "google",
                     "repos_url": "https://google.com"})
     ])
-    def test_pulic_repos_url(self, org_name, json_result):
+    def test_public_repos_url(self, org_name, json_result):
         """
         test the return value for public_repos_url
         """
