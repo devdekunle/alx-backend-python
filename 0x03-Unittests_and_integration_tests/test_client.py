@@ -68,7 +68,7 @@ class TestGithubOrgClient(unittest.TestCase):
             mock_response.return_value = "https://google.com"
             github_obj = GithubOrgClient(org_name)
             self.assertEqual(github_obj.public_repos(),
-                            ['truth', 'Apache api'])
+                             ['truth', 'Apache api'])
             self.assertEqual(github_obj.public_repos(),
                              ['truth', 'Apache api'])
             mock_object.assert_called_once()
