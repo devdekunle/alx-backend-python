@@ -49,13 +49,13 @@ class TestGithubOrgClient(unittest.TestCase):
 
     @parameterized.expand([
         ("google", [{"testing_google1": "google",
-                    "repos_url": "https://google.com",
-                    "other_details": "some_other things",
-                    "name": "truth"
-                    },
+                     "repos_url": "https://google.com",
+                     "other_details": "some_other things",
+                     "name": "truth"
+                     },
                     {"testing_google2": "google",
                     "repos_url": "https://google2.com",
-                    "name": "Apache api"}])
+                     "name": "Apache api"}])
     ])
     @patch('client.get_json')
     def test_public_repos(self, org_name, json_result, mock_object):
@@ -68,9 +68,9 @@ class TestGithubOrgClient(unittest.TestCase):
                    new_callable=PropertyMock) as mock_response:
             mock_response.return_value = "https://google.com"
             github_obj = GithubOrgClient(org_name)
-            self.assertEqual(github_obj.public_repos(), ['truth', 'Apache api'])
-            self.assertEqual(github_obj.public_repos(), ['truth', 'Apache api'])
+            self.assertEqual(github_obj.public_repos(),
+                             ['truth', 'Apache api'])
+            self.assertEqual(github_obj.public_repos(),
+                             ['truth', 'Apache api'])
             mock_object.assert_called_once
             mock_response.assert_called_once
-
-
