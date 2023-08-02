@@ -27,6 +27,6 @@ class TestGithubOrgClient(unittest.TestCase):
         # create instance of GithubOrgClient
         github_org = GithubOrgClient(org_name)
         self.assertEqual(github_org.org, json_result)
-        self.asserEqual(github_org.org, json_result)
+        self.assertEqual(github_org.org, json_result)
         url = github_org.ORG_URL.format(org=org_name)
         mock_object.assert_called_once_with(url)
