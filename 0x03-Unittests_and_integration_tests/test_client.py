@@ -50,7 +50,6 @@ class TestGithubOrgClient(unittest.TestCase):
     @parameterized.expand([
         ("google", [{"testing_google1": "google",
                      "repos_url": "https://google.com",
-                     "other_details": "some_other things",
                      "name": "truth"
                      },
                     {"testing_google2": "google",
@@ -69,8 +68,8 @@ class TestGithubOrgClient(unittest.TestCase):
             mock_response.return_value = "https://google.com"
             github_obj = GithubOrgClient(org_name)
             self.assertEqual(github_obj.public_repos(),
-                             ['truth', 'Apache api'])
+                            ['truth', 'Apache api'])
             self.assertEqual(github_obj.public_repos(),
                              ['truth', 'Apache api'])
-            mock_object.assert_called_once
-            mock_response.assert_called_once
+            mock_object.assert_called_once()
+            mock_response.assert_called_once()
