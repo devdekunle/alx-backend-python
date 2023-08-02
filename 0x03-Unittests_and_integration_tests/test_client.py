@@ -44,5 +44,5 @@ class TestGithubOrgClient(unittest.TestCase):
             mock_object.return_value = json_result
             github_org = GithubOrgClient(org_name)
             self.assertEqual(github_org._public_repos_url,
-                            json_result['repos_url'])
+                             json_result['repos_url'])
             mock_object.assert_called_once
